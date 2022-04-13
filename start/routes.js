@@ -22,9 +22,10 @@ Route.group(() => {
   Route.get('/showusers', 'UserController.showUsers') //Return all users data
   Route.put('/update', 'UserController.update') //Update the data
   Route.delete('/destroy', 'UserController.destroy') //Delete the user
-}).prefix('/User')
+}).prefix('/User').middleware(['auth:jwt'])
 
 
 Route.group(() => {
-  Route.post('/code', 'AuthController.code') //Only return the user's code
+  Route.post('/auth1', 'AuthController.auth1') //Return token or the code to the secudn auth
+  Route.post('/auth2', 'AuthController.auth2') //Return the token
 }).prefix('/Auth')

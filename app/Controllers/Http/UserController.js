@@ -24,7 +24,9 @@ class UserController {
             }
         }
     }
-    async update({ request, response }) {   
+
+
+    /*async update({ request, response }) {   
         const validation = await validate(request.all(), {
             username: 'required',
             email: 'required|email',
@@ -73,10 +75,10 @@ class UserController {
             const U = await User.findBy('code', code)
             return response.status(200).json({ message: 'User was found', U })
         }
-    }
+    }*/
     async showUsers({response}){
-        const U = await User.all()
-        return response.status(200).json({U})
+        const Users = await User.all()
+        return response.status(200).json({Users})
     }
 }
 
