@@ -17,15 +17,26 @@
 const Route = use('Route')
 
 Route.group(() => {
-  Route.post('/create', 'UserController.create') //Only return the user's code
-  Route.get('/show', 'UserController.show') //Return the user's data
-  Route.get('/showusers', 'UserController.showUsers') //Return all users data
-  Route.put('/update', 'UserController.update') //Update the data
-  Route.delete('/destroy', 'UserController.destroy') //Delete the user
+  Route.post('/create', 'UserController.create')
+  Route.get('/show', 'UserController.show')
+  Route.get('/showusers', 'UserController.showUsers')
+  //Route.put('/update', 'UserController.update')
+  //Route.delete('/destroy', 'UserController.destroy')
+  Route.get('/verifyToken', 'UserController.verifyToken')
+  Route.get('/generateToken', 'UserController.generateToken')
 }).prefix('/User').middleware(['auth:jwt'])
 
 
 Route.group(() => {
-  Route.post('/auth1', 'AuthController.auth1') //Return token or the code to the secudn auth
-  Route.post('/auth2', 'AuthController.auth2') //Return the token
+  Route.post('/auth1', 'AuthController.auth1')
+  Route.post('/auth2', 'AuthController.auth2')
+  Route.post('/loginApp', 'AuthController.loginApp')
 }).prefix('/Auth')
+
+Route.group(() => {
+  Route.get('/showSeries', 'SerieController.showSeries')
+  Route.post('/create', 'SerieController.create')
+}).prefix('/Serie').middleware(['auth:jwt'])
+
+
+Route.get('prueba', 'UserController.mail')

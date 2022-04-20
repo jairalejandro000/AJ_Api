@@ -12,7 +12,7 @@ class UserSchema extends Schema {
       table.string('email', 254).notNullable().unique()
       table.string('code', 254)
       table.string('password', 60).notNullable()
-      table.string('rol_id', 10).notNullable()
+      table.string('rol', 6)
       table.timestamps()
     })
   }
