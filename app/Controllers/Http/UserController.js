@@ -51,7 +51,7 @@ class UserController {
             if(U == null){
                 return response.status(400).json({message: 'Validation error'})
             }else{
-                if(U.rol_id){
+                if(U.rol == '3'){
                     const t = await randomstring.generate({
                         length: 6})
                     return response.ok({message: 'Validation succesful', token: t})
