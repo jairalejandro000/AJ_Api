@@ -54,6 +54,8 @@ class UserController {
                 if(U.rol == '3'){
                     const t = await randomstring.generate({
                         length: 6})
+                    U.token = await Hash.make(t)
+                    await U.save()
                     return response.ok({message: 'Validation succesful', token: t})
                 }else{
                     return response.status(400).json({message: 'Your rol can not make this'})
