@@ -59,12 +59,12 @@ class AuthController {
                         const code = c
                         const rol = U.rol
                         U.save();
-                        return response.ok({message: 'Successful login', code})
+                        return response.ok({message: 'Successful login', code, rol})
                     }else{
                         const t = await auth.attempt(email, password)
                         const token = t.token
                         const rol = U.rol
-                        return response.ok({message: 'Successful login', token, token})
+                        return response.ok({message: 'Successful login', token, token, rol})
                     }
                 }else{
                     return response.status(400).json({message: 'Wrong credentials'})

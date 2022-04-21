@@ -17,7 +17,6 @@
 const Route = use('Route')
 
 Route.group(() => {
-  Route.post('/create', 'UserController.create')
   Route.get('/show', 'UserController.show')
   Route.get('/showusers', 'UserController.showUsers')
   //Route.put('/update', 'UserController.update')
@@ -39,4 +38,4 @@ Route.group(() => {
 }).prefix('/Serie').middleware(['auth:jwt'])
 
 
-Route.get('prueba', 'UserController.mail')
+Route.post('User/create', 'UserController.create')
