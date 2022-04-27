@@ -4,6 +4,7 @@ const User = use('App/Models/User')
 const jwt_decode = use('jwt-decode')
 const Hash = use('Hash')
 const randomstring = use("randomstring")
+const Token = use('App/Models/UserToken')
 
 class UserController {
 
@@ -54,8 +55,10 @@ class UserController {
                 if(U.rol == '3'){
                     const t = await randomstring.generate({
                         length: 6})
-                    U.token = await Hash.make(t)
-                    await U.save()
+                    const token = await Token.findBy('id', 1) 
+                    const th = await Hash.make(t)
+                    token.token = th
+                    await token.save()
                     return response.ok({message: 'Validation succesful', token: t})
                 }else{
                     return response.status(400).json({message: 'Your rol can not make this'})

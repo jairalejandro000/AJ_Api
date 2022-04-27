@@ -35,7 +35,9 @@ Route.group(() => {
 Route.group(() => {
   Route.get('/showSeries', 'SerieController.showSeries')
   Route.post('/create', 'SerieController.create')
+  Route.put('/update/:id', 'SerieController.update')
 }).prefix('/Serie').middleware(['auth:jwt'])
 
+Route.get('/get', 'SerieController.getall')
 
 Route.post('User/create', 'UserController.create')

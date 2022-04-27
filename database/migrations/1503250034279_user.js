@@ -13,7 +13,6 @@ class UserSchema extends Schema {
       table.string('code', 254)
       table.string('password', 60).notNullable()
       table.string('rol', 1)
-      table.string('token', 254)
       table.timestamps()
     })
   }
