@@ -7,6 +7,7 @@ class ChatController {
   }
 
   onMessage(data){
+    this.socket.broadcast('message', data);
     console.log(data);
   }
 }
