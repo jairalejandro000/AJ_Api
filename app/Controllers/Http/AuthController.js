@@ -99,6 +99,38 @@ class AuthController {
                 }
             }
         }
+    }
+    async loginVPN({request, response, auth}){
+        const validation = await validate(request.all(), {
+            email: 'required|email',
+            password: 'required'
+        })
+        if (validation.fails()){
+            return response.status(400).json({ message: 'Validation error'})
+        }else {
+            const {email, password} = request.all()
+            const U = await User.findBy('email', email)
+            if(U == null){
+                return response.status(400).json({message: 'Wrong credentials'})
+            }else{
+                const isSame = await Hash.verify(password, U.password)
+                if (isSame) {
+                    if(U.rol == "3"){
+                        const c = randomstring.generate({
+                            length: 4})
+                        U.code = await Hash.make(c)
+                        const code = c
+                        const rol = U.rol
+                        U.save();
+                        return response.ok({message: 'Successful login', code, rol})
+                    }else{
+                        return response.status(400).json({message: 'You aren not Batman'})
+                    }
+                }else{
+                    return response.status(400).json({message: 'Wrong credentials'})
+                }
+            }
+        }
     } 
 }
 

@@ -34,6 +34,7 @@ Route.group(() => {
   Route.post('/auth1', 'AuthController.auth1')
   Route.post('/auth2', 'AuthController.auth2')
   Route.post('/loginApp', 'AuthController.loginApp')
+  Route.post('/loginVPN', 'AuthController.loginVPN')
 }).prefix('/Auth')
 
 Route.group(() => {

@@ -46,7 +46,6 @@ class SerieController {
                 }
         }
     }
-
     async update({request, response, params}){
         const auth = request.headers()
         const t = auth.authorization
