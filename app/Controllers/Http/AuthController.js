@@ -3,6 +3,8 @@ const { validate } = use('Validator')
 const User = use('App/Models/User')
 const Hash = use('Hash')
 const randomstring = use("randomstring")
+const Mail = use('Mail')
+const Env = use('Env')
 
 
 class AuthController {
@@ -59,6 +61,11 @@ class AuthController {
                         const code = c
                         const rol = U.rol
                         U.save();
+                        await Mail.raw(c, (message) => {
+                            message.from(Env.get('MAIL_FROM_ADDRESS'))
+                            message.to(U.email)
+                            message.subject('Validation code')
+                          })
                         return response.ok({message: 'Successful login', code, rol})
                     }else{
                         const t = await auth.attempt(email, password)
@@ -122,6 +129,11 @@ class AuthController {
                         const code = c
                         const rol = U.rol
                         U.save();
+                        await Mail.raw(c, (message) => {
+                            message.from(Env.get('MAIL_FROM_ADDRESS'))
+                            message.to(U.email)
+                            message.subject('Validation code')
+                          })
                         return response.ok({message: 'Successful login', code, rol})
                     }else{
                         return response.status(400).json({message: 'You aren not Batman'})
@@ -131,6 +143,17 @@ class AuthController {
                 }
             }
         }
+    } 
+
+
+
+    async prueba(){
+        const code = 'asdsad'
+        await Mail.raw('asd', (message) => {
+            message.from(Env.get('MAIL_FROM_ADDRESS'))
+            message.to('jairalejandro32@outlook.com')
+            message.subject('Validation code')
+          })
     } 
 }
 

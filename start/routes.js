@@ -46,3 +46,6 @@ Route.group(() => {
 Route.get('/get', 'SerieController.getall')
 
 Route.post('User/create', 'UserController.create')
+
+
+Route.get('prueba', 'AuthController.prueba')
